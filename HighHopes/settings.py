@@ -27,16 +27,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.contenttypes',
+
+    'Profiles',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,13 @@ WSGI_APPLICATION = 'HighHopes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'highhopes',
+        'USER': 'root',
+        'PASSWORD': 'secret',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        # 'default-character-set': 'utf-8'
     }
 }
 
