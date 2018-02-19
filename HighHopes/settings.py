@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.contenttypes',
 
+    'django_user_agents',
+
     'Profiles',
 ]
 
@@ -48,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'HighHopes.urls'
@@ -78,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'highhopes',
-        'USER': 'root',
-        'PASSWORD': 'secret',
+        'USER': 'user',
+        'PASSWORD': 'yourpassword',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         # 'default-character-set': 'utf-8'

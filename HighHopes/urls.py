@@ -18,8 +18,9 @@ from django.contrib import admin
 from Profiles import views
 
 urlpatterns = [
-    url(r'^$', views.profiles_list),
-    url(r'^admin/', admin.site.urls),
-    url(r'^register/$', views.RegisterFormView.as_view()),
-    url(r'^login/$', views.profiles_list),
+    url(r'^$', views.index, name='index'),
+    url(r'^admin/', admin.site.urls, name='admin'),
+    url(r'^register/$', views.RegisterFormView.as_view(), name='register'),
+    url(r'^login/$', views.login, name='login'),
+    url(r'^profiles_list/$', views.profiles_list, name='profiles_list'),
 ]
