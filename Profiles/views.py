@@ -3,16 +3,15 @@ from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from models import Profile
+from django.contrib.auth.decorators import login_required
 
 # from .forms import
 
 def index(request):
     return render(request, 'index.html')
 
-def login(request):
-    #пока так
-    profiles = Profile.objects.all()
-    return render(request, 'profiles.html', {'profiles': profiles})
+# def login(request):
+#     return render(request, 'login.html')
 
 def profiles_list(request):
      profiles = Profile.objects.all()
@@ -40,3 +39,7 @@ class RegisterFormView(FormView):
 
         # Вызываем метод базового класса
         return super(RegisterFormView, self).form_valid(form)
+
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')

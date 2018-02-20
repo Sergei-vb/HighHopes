@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<script src="/static/websockets.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <div>
+        {% if user.is_authenticated %}
+        <p>User: {{ user.get_username }}</p>
+        <p><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></p>
+        {% else %}
+        <p><a href="{% url 'login'%}?next={{request.path}}">Login</a></p>
+        {% endif %}
+    </div>
+
+    <!--<div><a href="{% url 'logout' %}">Logout</a></div>-->
+    <div>
+        <div style="background-color:green; width:50%; float:left">
+            Images:<hr>
+            <input type="submit" value="Load" onclick="load('images')">
+            <ul id="print_images"></ul>
+        </div>
+        <div style="background-color:yellow; width:50%; float:right">
+            Running Containers:<hr>
+            <input type="submit" value="Load" onclick="load('containers')">
+            <ul id="print_containers"></ul>
+        </div>
+    </div>
+    <div style="clear:both">Enter the url-address containing the directory with the Dockerfile:
+        <input type="text" id="url"><input type="button" value="Build" onclick="load('url-address')">
+        <ul id="output" style="background-color:grey"></ul>
+    </div>
+</body>
+</html>
