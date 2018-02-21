@@ -1,4 +1,5 @@
 from django.apps import AppConfig
 
-class profilesConfig(AppConfig):
+
+class ProfilesConfig(AppConfig):
     name = 'Profiles'

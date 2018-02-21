@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^register/$', views.RegisterFormView.as_view(), name='register'),
-    #url(r'^login/$', views.login, name='login'),
+    # url(r'^login/$', views.login, name='login'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^profiles_list/$', views.profiles_list, name='profiles_list'),
 ]

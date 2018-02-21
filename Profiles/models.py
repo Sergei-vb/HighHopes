@@ -4,20 +4,15 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-# https://djbook.ru/rel1.8/topics/auth/customizing.html#extending-user
-# https://habrahabr.ru/post/313764/#OneToOneField
-
 class Profile(models.Model):
     user = models.OneToOneField(User)
     os = models.CharField(max_length=100)
     language = models.CharField(max_length=50)
 
-
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance, os=instance.os, language=instance.language)
-
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
