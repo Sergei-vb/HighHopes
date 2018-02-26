@@ -1,9 +1,9 @@
-from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
-from models import Profile
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, ListView
+
+from Profiles.models import Profile
 
 auth_decorators = [login_required]
 
