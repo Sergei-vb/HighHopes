@@ -3,15 +3,15 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from models import Profile
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView, ListView
+
+auth_decorators = [login_required]
 
 
-def index(request):
-    return render(request, 'index.html')
+class ProfileListView(ListView):
+    queryset = Profile.objects.all()
 
-
-def profiles_list(request):
-     profiles = Profile.objects.all()
-     return render(request, 'profiles.html', {'profiles': profiles})
+    template_name = "profiles.html"
 
 
 class RegisterFormView(FormView):
@@ -22,7 +22,6 @@ class RegisterFormView(FormView):
     template_name = "register.html"
 
     def form_valid(self, form):
-
         instance = form.save(commit=False)
 
         instance.os = self.request.user_agent.os.family + ' ' + self.request.user_agent.os.version_string
@@ -33,6 +32,6 @@ class RegisterFormView(FormView):
         return super(RegisterFormView, self).form_valid(form)
 
 
-@login_required
-def dashboard(request):
-    return render(request, 'dashboard.html')
+#@method_decorator(auth_decorators, name='dispatch')
+class DashboardView(TemplateView):
+    template_name = "dashboard.html"
