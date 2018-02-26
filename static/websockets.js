@@ -1,7 +1,4 @@
 function load(key_from_html, elem) {
-
-//test comment
-
         var ws = new WebSocket("ws://" + location.hostname + ":8888" + "/load_from_docker/");
         ws.onopen = function() {
            var dict = {};
