@@ -1,1 +1,7 @@
 Django==1.11.10
+django-user-agents==0.3.2
+pkg-resources==0.0.0
+PyMySQL==0.8.0
+pytz==2018.3
+ua-parser==0.7.3
+user-agents==1.1.0
