@@ -1,5 +1,7 @@
+from django.contrib.auth import login
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, ListView
 
@@ -17,7 +19,7 @@ class ProfileListView(ListView):
 class RegisterFormView(FormView):
     form_class = UserCreationForm
 
-    success_url = "/profiles_list/"
+    success_url = "/dashboard/"
 
     template_name = "register.html"
 
@@ -25,13 +27,14 @@ class RegisterFormView(FormView):
         instance = form.save(commit=False)
 
         instance.os = self.request.user_agent.os.family + ' ' + self.request.user_agent.os.version_string
-        instance.language = self.request.META.LANGUAGE
+        instance.language = self.request.META['LANGUAGE']
 
         instance.save()
+        login(self.request, instance)
 
         return super(RegisterFormView, self).form_valid(form)
 
 
-#@method_decorator(auth_decorators, name='dispatch')
+@method_decorator(auth_decorators, name='dispatch')
 class DashboardView(TemplateView):
     template_name = "dashboard.html"
