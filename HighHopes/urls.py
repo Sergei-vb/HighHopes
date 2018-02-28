@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/profile/(?P<pk>\d+)', views.UserProfileView.as_view(), name='user_profile'),
 
     url(r'^register/$', views.RegisterFormView.as_view(), name='register'),
 

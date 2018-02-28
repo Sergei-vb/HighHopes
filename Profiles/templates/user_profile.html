@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>User profile</h1>
+    <p>Username: {{user.username}}</p>
+    <p>OS: {{object.os}}</p>
+    <p>Language: {{object.language}}</p>
+    <p><a href="/accounts/password_change/">Change password</a></p>
+    <p><a href="{% url 'dashboard' %}">Back to dashboard</a></p>
+{% endblock %}
