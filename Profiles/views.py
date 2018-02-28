@@ -3,7 +3,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 from Profiles.models import Profile
 
@@ -33,6 +33,13 @@ class RegisterFormView(FormView):
         login(self.request, instance)
 
         return super(RegisterFormView, self).form_valid(form)
+
+
+class UserProfileView(DetailView):
+    model = Profile
+
+    template_name = 'user_profile.html'
+
 
 
 @method_decorator(auth_decorators, name='dispatch')
