@@ -1,0 +1,14 @@
+# TEMPLATE
+
+from HighHopes.settings import *
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'name',
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'HOST': '0.0.0.0',
+        'PORT': '0000',
+    }
+}
