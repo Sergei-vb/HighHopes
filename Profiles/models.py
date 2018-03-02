@@ -16,7 +16,11 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
-            Profile.objects.create(user=instance, os=instance.os, language=instance.language)
+            Profile.objects.create(
+                user=instance,
+                os=instance.os if hasattr(instance, 'os') else '--',
+                language=instance.language if hasattr(instance, 'language') else '--'
+            )
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
